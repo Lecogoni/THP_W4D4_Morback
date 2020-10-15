@@ -16,7 +16,7 @@ puts "                      |     WELCOME IN MORBACK : THE GAME     |"
 puts "                      -----------------------------------------"
 puts ""
 puts ""
-puts " Si tu veux jouer presse un n'importe quel touche !! De toutes façons il n'y pas le choix alors go joue "
+puts " Si tu veux jouer presse n'importe quel touche !! De toutes façons il n'y pas le choix alors go on joue "
 puts ""
 print ">"
 input_game = gets.chomp

@@ -200,28 +200,32 @@ class Game
         @data_check =  true
     end
 
+# permet de relancer une partie avec les mêmes joueurs
+
     def relaunch
         relaod = ""
-        #while reload != "y" || reload != "n"
-            puts ""
-            puts "Voulez vous refaire une partie ? y n"
-            puts ""   
-            print ">>> "
-            reload = gets.downcase.chomp
-            if reload == "y"
-                game_on
-            else
-                sleep(1)
-                puts "et donc quoi maintenant, on attend"
-                puts ".."
-                sleep(1)
-                puts "....."
-                sleep(1.2)
-                puts "........"
-                sleep(1.5)
-                puts "................"
-            end
-        #end
+        puts ""
+        puts "#{players[0].name} a #{players[0].player_victory} points et #{players[1].name} a #{players[1].player_victory} points"
+        puts ""
+        puts "Voulez vous refaire une partie ? y n"
+        puts ""   
+        print ">>> "
+        reload = gets.downcase.chomp
+        if reload == "y"
+            board = Board.new
+            board.show_board
+            game_on
+        else
+            sleep(1)
+            puts "et donc quoi maintenant, on attend"
+            puts ".."
+            sleep(1)
+            puts "....."
+            sleep(1.2)
+            puts "........"
+            sleep(1.5)
+            puts "................"
+        end
     end
 
 end  
