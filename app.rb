@@ -8,28 +8,23 @@ require 'app/board'
 require 'app/boardcase'
 require 'app/game'
 
-# --> init player 1 ---------------------
-#puts "enter player 1 name : "
+
+puts " Press enter pour jouer ? "
+#input_game = gets.chomp
+
+puts "enter player 1 name : "
 #input_player1_name = gets.chomp
 
-player1 = Player.new("Nico", "X")
-
-# --> init player 1 ---------------------
-
-#puts "enter player 2 name : "
+puts "enter player 2 name : "
 #input_player2_name = gets.chomp
 
-player2 = Player.new("Loupa", "O")
+game1 = Game.new("nico", "ed")
 
-# --> show_player_status Recap victory ---------------------
+game1.game_on
 
-puts ""
-puts player1.show_player_status
-puts player2.show_player_status
 
-# --> create the board + BoardCase and show the board ---------
 
-board = Board.new
+
 
 
 #board.show_board
@@ -38,8 +33,10 @@ board = Board.new
 
 # puts ""
 # puts "player 1 choose a box :"
-# player1_input = gets.chomp
+#player1_input = gets.chomp
 
-# play(player1_input)
+#player1.play("a1")
+
+
 
 binding.pry

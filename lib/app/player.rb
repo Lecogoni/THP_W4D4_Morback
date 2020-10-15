@@ -12,8 +12,16 @@ class Player
     end
 
     def show_player_status
-        puts "#{self.name} a #{self.player_victory} victoire(s)"
+        puts "
+        #{Player[0].name} a #{Player[0].player_victory} victoire(s)
+        et #{Player[1].name} a #{Player[1].player_victory} victoire(s)"
     end
 
-end
 
+    def play(player1_input)
+        puts "#{self.name} joue en #{player1_input}"
+    end
+   
+
+
+end
