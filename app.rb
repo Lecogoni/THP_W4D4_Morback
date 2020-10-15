@@ -8,38 +8,44 @@ require 'app/board'
 require 'app/boardcase'
 require 'app/game'
 
-puts ""
-puts " --- WELCOME IN MORBACK : THE GAME --- "
-puts ""
+# ----------------- ACCUEIL -----------------
 
-puts " Si tu veux jouer presse un n'importe quel touche !! "
-#input_game = gets.chomp
+puts ""
+puts "  -----------------------------------------"
+puts "  |     WELCOME IN MORBACK : THE GAME     |"
+puts "  -----------------------------------------"
+puts ""
+puts ""
+puts " Si tu veux jouer presse un n'importe quel touche !! De toutes façon il n'y pas le choix alors go joue "
+print ">"
+input_game = gets.chomp
+
+# -- demande le nom du premier joueur
 
 puts "Joueur 1 entrer votre nom : "
-#input_player1_name = gets.chomp
+print ">"
+input_player1_name = gets.chomp
 
+# -- demande le nom du second joueur
+
+puts ""
 puts "Joueur 2 entrer votre nom : "
-#input_player2_name = gets.chomp
+input_player2_name = gets.chomp
 
-game1 = Game.new("nico", "ed")
+
+# -- initialize un nouveau Game
+
+game1 = Game.new(input_player1_name, input_player2_name)
+
+# -- présente le board vide
+
+game1.board.show_board
+
+puts ""
+puts "Voici le board, pour jouer entre la valeur d'une case, par ex. a1, B2 ou encore c3 "
+
+# -- puis lance une partie méthode game_on
 
 game1.game_on
-
-
-
-
-
-
-#board.show_board
-
-# --> player1 joue ---------
-
-# puts ""
-# puts "player 1 choose a box :"
-#player1_input = gets.chomp
-
-#player1.play("a1")
-
-
 
 binding.pry

@@ -4,6 +4,8 @@ class Board
 
     attr_accessor :cell
 
+# -- initalisation de board - création d'un array @cell qui contient et initialise les 9 boardcases avec une key correspondant à l'emplacement et une value vide
+
     def initialize
 
         @cell = [BoardCase.new("a1", " "), 
@@ -15,69 +17,27 @@ class Board
                 BoardCase.new("c1", " "),
                 BoardCase.new("c2", " "),
                 BoardCase.new("c3", " ")]
-
-
-        puts "      1      2      3"
-        # sleep(0.1)
-        puts "  ----------------------"
-        sleep(0.1)
-        puts "  |      |      |      |"
-        # sleep(0.1)
-        puts "A |      |      |      |"
-        # sleep(0.1)
-        puts "  |      |      |      |"
-        # sleep(0.1)
-        puts "  ----------------------"
-        # sleep(0.1)
-        puts "  |      |      |      |"
-        # sleep(0.1)
-        puts "B |      |      |      |"
-        # sleep(0.1)
-        puts "  |      |      |      |"
-        # sleep(0.1)
-        puts "  ----------------------"
-        # sleep(0.1)
-        puts "  |      |      |      |"
-        # sleep(0.1)
-        puts "C |      |      |      |"
-        # sleep(0.1)
-        puts "  |      |      |      |"
-        # sleep(0.1)
-        puts "  ----------------------"
     end
+
+# -- méthode qui affiche le board avec les valeurs " ", X ou O
 
     def show_board
         puts ""
         puts "      1      2      3"
-        # sleep(0.1)
         puts "  ----------------------"
-        # sleep(0.1)
         puts "  |      |      |      |"
-        # sleep(0.1)
         puts "A |   #{cell[0].value}  |  #{cell[1].value}   |  #{cell[2].value}   |"
-        # sleep(0.1)
         puts "  |      |      |      |"
-        # sleep(0.1)
         puts "  ----------------------"
-        # sleep(0.1)
         puts "  |      |      |      |"
-        # sleep(0.1)
         puts "B |   #{cell[3].value}  |  #{cell[4].value}   |  #{cell[5].value}   |"
-        # sleep(0.1)
         puts "  |      |      |      |"
-        # sleep(0.1)
         puts "  ----------------------"
-        # sleep(0.1)
         puts "  |      |      |      |"
-        # sleep(0.1)
         puts "C |   #{cell[6].value}  |  #{cell[7].value}   |  #{cell[8].value}   |"
-        # sleep(0.1)
         puts "  |      |      |      |"
-        # sleep(0.1)
         puts "  ----------------------"
     end 
-
-
 end
 
-#if @cell[0][1] == @cell[1][1] == @cell[2][1]
+

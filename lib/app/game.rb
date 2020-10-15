@@ -4,6 +4,8 @@ class Game
 
     attr_accessor :p1name, :p2name, :board, :players, :result, :game_turn, :data_check
 
+# -- initalisation d'un game, qui initialise avec lui 1 board, 2 players placés dans un Array : players
+
     def initialize(input_player1_name,input_player2_name)
 
         @p1name = input_player1_name
@@ -18,40 +20,40 @@ class Game
         Player.new(p2name, "O")]
     end
 
+# -- méthode, boucle déroule jeu - 5 boucles, chacunes font jouer le joueur 1 puis 2.  @game_turn s'incrémente a chaque action de joueur. Arriver à neuf action de joueur ==> sortie de boucle. le controle des victoires est lancé apres chaque jouer.
+
     def game_on
 
         5.times do |i|
+            # -- joueur 1
             @game_turn += 1
-            round(players[0])
+            round(players[0])# -- appel de la méthode round()
             check_result
-            
             break if result == true
             break if @game_turn == 9
-            
+            # -- joueur 2
             @game_turn += 1
-            round(players[1])
+            round(players[1])# -- appel de la méthode round()
             check_result
-
             break if result == true
         end   
-        
+        # -- sortie de boucle
         if result == true
             puts @winner
-            #puts show_player_status
         else 
             puts "Match Nul"
             #puts show_player_status
         end
     end
 
+# Méthode qui appel un input du joueur, une case puis la compare avec la Key du arra cell. Lorsque la valeur entrer par le joeur est égale au nom d'une key / d'un boardcase la value de la boardcase est remplacé par le sign du joeur
+
     def round(player)
         puts ""
-        puts "#{player.name.upcase}, c'est ton tour, dans quelle case veux tu jouer ? "
+        puts ">> #{player.name.upcase}, c'est ton tour, dans quelle case veux tu jouer ? "
 
-        while check_player_input != true
-            input_player_round = gets.chomp
-            check_player_input(input_player_round)
-        end
+        input_player_round = gets.chomp
+        
         number = 0
         board.cell.each do |cellule|
              if input_player_round == cellule.name
@@ -166,17 +168,17 @@ class Game
         end  
     end 
 
-# Méthode pour vérifier si les valeurs enter par le joueur correspondent à une case existante. Si valeur non existante return false.
+# Méthode pour vérifier si les valeurs enter par le joueur correspondent à une case existante. Si valeur non existante return false
     def check_player_input(input)
         input_to_check = input.downcase
         data = ["a1", "a2", "a3", "b1", "b2", "b3", "c1", "c2", "c3" ]
-
+        
         data.each do |i|
             if input_to_check != i
-                puts "la valeur entrée n'est pas conforme"
+                @data_check = false
             end
         end
-        return true
+        @data_check =  true
     end
 
 
