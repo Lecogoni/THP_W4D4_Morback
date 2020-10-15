@@ -212,7 +212,7 @@ class Game
         print ">>> "
         reload = gets.downcase.chomp
         if reload == "y"
-            board = Board.new
+            @board = Board.new
             board.show_board
             game_on
         else
