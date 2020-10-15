@@ -48,9 +48,10 @@ class Game
         puts ""
         puts "#{player.name.upcase}, c'est ton tour, dans quelle case veux tu jouer ? "
 
-        
-        input_player_round = gets.chomp
-        
+        while check_player_input != true
+            input_player_round = gets.chomp
+            check_player_input(input_player_round)
+        end
         number = 0
         board.cell.each do |cellule|
              if input_player_round == cellule.name
@@ -172,7 +173,7 @@ class Game
 
         data.each do |i|
             if input_to_check != i
-                return false
+                puts "la valeur entrée n'est pas conforme"
             end
         end
         return true
