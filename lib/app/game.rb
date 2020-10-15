@@ -2,7 +2,7 @@ require "pry"
 
 class Game
 
-    attr_accessor :p1name, :p2name, :board, :players, :result
+    attr_accessor :p1name, :p2name, :board, :players, :result,
 
     def initialize(input_player1_name,input_player2_name)
 
@@ -11,21 +11,40 @@ class Game
         @board = Board.new
         @result = false
 
+
+
         @players = [
         Player.new(p1name, "X"),
         Player.new(p2name, "O")]
     end
 
     def game_on
+
         4.times do |i|
             round(players[0])
             check_result
+            #puts result
+            puts @winner 
+            break if result == true
             round(players[1])
             check_result
+            puts @winner 
+            #puts result
+            break if result == true
+        end   
+         
+        round(players[0])
+        check_result
+        if result == true
+            puts @winner
+        else 
+            puts "Match Nul"
         end
-        #manque le tour 9
-        puts "sortie de boucle"       
     end
+
+    # def game_on_end
+        
+    # end
 
     def round(player)
 
@@ -39,24 +58,24 @@ class Game
              end
              number += 1
         end
-        
         board.show_board
     end
 
     def check_result
 
-        result = ""
-        winner = ""
+        @result = ""
+        @winner = ""
 
         if board.cell[0].value == board.cell[1].value && board.cell[0].value == board.cell[2].value
             if board.cell[0].value == "X"
                 #player[0]player_victory += 1 
                 @result = true
-                puts "#{players[0].name} a gagné"
+                @winner = "#{players[0].name} a gagné"
             elsif board.cell[0].value == "O"
                 #player[1]player_victory += 1
                 winner = "#{players[1].name} a gagné"
-                result = true
+                @result = true
+                @winner = "#{players[1].name} a gagné"
             end
         end  
 
@@ -64,11 +83,13 @@ class Game
             if board.cell[3].value == "X"
                 #player[0]player_victory += 1
                 winner = "#{players[0].name} a gagné"
-                result = true
+                @result = true
+                puts "#{players[0].name} a gagné"
             elsif board.cell[3].value == "O"
                 #player[1]player_victory += 1
                 winner = "#{players[1].name} a gagné"
-                result = true
+                @result = true
+                puts "#{players[1].name} a gagné"
             end
         end  
 
@@ -76,11 +97,13 @@ class Game
             if board.cell[6].value == "X"
                 #player[0]player_victory += 1
                 winner = "#{players[0].name} a gagné"
-                result = true
+                @result = true
+                puts "#{players[0].name} a gagné"
             elsif board.cell[6].value == "O"
                 # player[1]player_victory += 1
                 winner = "#{players[1].name} a gagné"
-                result = true
+                @result = true
+                puts "#{players[1].name} a gagné"
             end
         end  
 
@@ -88,11 +111,13 @@ class Game
             if board.cell[0].value == "X"
                 #player[0]player_victory += 1
                 winner = "#{players[0].name} a gagné"
-                result = true
+                @result = true
+                puts "#{players[0].name} a gagné"
             elsif board.cell[0].value == "O"
                 # player[1]player_victory += 1
                 winner = "#{players[1].name} a gagné"
-                result = true
+                @result = true
+                puts "#{players[1].name} a gagné"
             end
         end  
 
@@ -100,11 +125,13 @@ class Game
             if board.cell[1].value == "X"
                 #player[0]player_victory += 1
                 winner = "#{players[0].name} a gagné"
-                result = true
+                @result = true
+                puts "#{players[0].name} a gagné"
             elsif board.cell[1].value == "O"
                 # player[1]player_victory += 1
                 winner = "#{players[1].name} a gagné"
-                result = true
+                @result = true
+                puts "#{players[1].name} a gagné"
             end
         end  
 
@@ -112,11 +139,13 @@ class Game
             if board.cell[2].value == "X"
                 #player[0]player_victory += 1
                 winner = "#{players[0].name} a gagné"
-                result = true
+                @result = true
+                puts "#{players[0].name} a gagné"
             elsif board.cell[2].value == "O"
                 #player[1]player_victory += 1
                 winner = "#{players[1].name} a gagné"
-                result = true
+                @result = true
+                puts "#{players[1].name} a gagné"
             end
         end  
 
@@ -124,11 +153,13 @@ class Game
             if board.cell[0].value == "X"
                 #player[0]player_victory += 1
                 winner = "#{players[0].name} a gagné"
-                result = true
+                @result = true
+                puts "#{players[0].name} a gagné"
             elsif board.cell[0].value == "O"
                 #player[1]player_victory += 1
                 winner = "#{players[1].name} a gagné"
-                result = true
+                @result = true
+                puts "#{players[1].name} a gagné"
             end
         end  
 
@@ -136,11 +167,13 @@ class Game
             if board.cell[2].value == "X"
                 # player[0]player_victory += 1
                 winner = "#{players[0].name} a gagné"
-                result = true
+                @result = true
+                puts "#{players[0].name} a gagné"
             elsif board.cell[2].value == "O"
                 #player[1]player_victory += 1
                 winner = "#{players[1].name} a gagné"
-                result = true
+                @result = true
+                puts "#{players[1].name} a gagné"
             end
         end  
     end 
