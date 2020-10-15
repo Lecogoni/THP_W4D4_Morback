@@ -11,25 +11,27 @@ require 'app/game'
 # ----------------- ACCUEIL -----------------
 
 puts ""
-puts "  -----------------------------------------"
-puts "  |     WELCOME IN MORBACK : THE GAME     |"
-puts "  -----------------------------------------"
+puts "                      -----------------------------------------"
+puts "                      |     WELCOME IN MORBACK : THE GAME     |"
+puts "                      -----------------------------------------"
 puts ""
 puts ""
-puts " Si tu veux jouer presse un n'importe quel touche !! De toutes façon il n'y pas le choix alors go joue "
+puts " Si tu veux jouer presse un n'importe quel touche !! De toutes façons il n'y pas le choix alors go joue "
+puts ""
 print ">"
 input_game = gets.chomp
 
 # -- demande le nom du premier joueur
 
 puts "Joueur 1 entrer votre nom : "
-print ">"
+print ">>> "
 input_player1_name = gets.chomp
 
 # -- demande le nom du second joueur
 
 puts ""
 puts "Joueur 2 entrer votre nom : "
+print ">>> "
 input_player2_name = gets.chomp
 
 

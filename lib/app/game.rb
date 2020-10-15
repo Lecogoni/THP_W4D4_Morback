@@ -2,7 +2,7 @@ require "pry"
 
 class Game
 
-    attr_accessor :p1name, :p2name, :board, :players, :result, :game_turn, :data_check
+    attr_accessor :p1name, :p2name, :board, :players, :result, :game_turn, :data_check, :player_ongoing
 
 # -- initalisation d'un game, qui initialise avec lui 1 board, 2 players placés dans un Array : players
 
@@ -10,14 +10,16 @@ class Game
 
         @p1name = input_player1_name
         @p2name = input_player2_name
-        @board = Board.new
-        @result = false
-        @game_turn = 0
-        @data_check = false
-
         @players = [
         Player.new(p1name, "X"),
         Player.new(p2name, "O")]
+
+        @board = Board.new
+        
+        @result = false
+        @game_turn = 0
+        @data_check = false
+        @player_ongoing = 0
     end
 
 # -- méthode, boucle déroule jeu - 5 boucles, chacunes font jouer le joueur 1 puis 2.  @game_turn s'incrémente a chaque action de joueur. Arriver à neuf action de joueur ==> sortie de boucle. le controle des victoires est lancé apres chaque jouer.
@@ -41,23 +43,37 @@ class Game
         if result == true
             puts @winner
         else 
-            puts "Match Nul"
+            puts "               MATCH NUL"
             #puts show_player_status
         end
     end
 
-# Méthode qui appel un input du joueur, une case puis la compare avec la Key du arra cell. Lorsque la valeur entrer par le joeur est égale au nom d'une key / d'un boardcase la value de la boardcase est remplacé par le sign du joeur
+# Méthode qui appel un input du joueur, et appel la fonction qui va vérifier si cette case est libre 
 
     def round(player)
+        @player_ongoing = player
         puts ""
         puts ">> #{player.name.upcase}, c'est ton tour, dans quelle case veux tu jouer ? "
+        input_player = gets.chomp
+        check_input_player_is_empty(input_player) 
+    end
 
-        input_player_round = gets.chomp
-        
+#pren l'input du player et compare avec la Key du array cell. Lorsque la valeur entrer par le joeur est égale au nom d'une key / d'un boardcase la value de la boardcase est remplacé par le sign du joeur. Si case n'est pas vide, le process recommence depuis la méthode round()
+
+    def check_input_player_is_empty(input_player)
         number = 0
         board.cell.each do |cellule|
-             if input_player_round == cellule.name
-                cellule.value = "#{player.sign}"
+             if input_player == cellule.name
+                if cellule.value != " " # reprise méthode round if la case est pas cide
+                    system "clear"
+                    puts ""
+                    puts "CETTE CASE N'EST PAS VIDE ESSAIE ENCORE ! essaie encore"
+                    puts ""
+                    board.show_board
+                    round(player_ongoing)
+                else
+                    cellule.value = "#{@player_ongoing.sign}"
+                end
              end
              number += 1
         end
@@ -75,11 +91,11 @@ class Game
             if board.cell[0].value == "X"
                 players[0].player_victory += 1 
                 @result = true
-                @winner = "#{players[0].name} a gagné"
+                @winner = "\n\n                #{players[0].name.upcase} A GAGNÉ !!!!!!"
             elsif board.cell[0].value == "O"
                 players[1].player_victory += 1
                 @result = true
-                @winner = "#{players[1].name} a gagné"
+                @winner = "\n\n                #{players[1].name.upcase} A GAGNÉ !!!!!!"
             end
         end  
 
@@ -87,11 +103,11 @@ class Game
             if board.cell[3].value == "X"
                 players[0].player_victory += 1 
                 @result = true
-                @winner = "#{players[0].name} a gagné"
+                @winner = "\n\n                #{players[0].name.upcase} A GAGNÉ !!!!!!"
             elsif board.cell[3].value == "O"
                 players[1].player_victory += 1
                 @result = true
-                @winner = "#{players[1].name} a gagné"
+                @winner = "\n\n                #{players[1].name.upcase} A GAGNÉ !!!!!!"
             end
         end  
 
@@ -99,11 +115,11 @@ class Game
             if board.cell[6].value == "X"
                 players[0].player_victory += 1 
                 @result = true
-                @winner = "#{players[0].name} a gagné"
+                @winner = "\n\n                #{players[0].name.upcase} A GAGNÉ !!!!!!"
             elsif board.cell[6].value == "O"
                 players[1].player_victory += 1
                 @result = true
-                @winner = "#{players[1].name} a gagné"
+                @winner = "\n\n                #{players[1].name.upcase} A GAGNÉ !!!!!!"
             end
         end  
 
@@ -111,11 +127,11 @@ class Game
             if board.cell[0].value == "X"
                 players[0].player_victory += 1 
                 @result = true
-                @winner = "#{players[0].name} a gagné"
+                @winner = "\n\n                #{players[0].name.upcase} A GAGNÉ !!!!!!"
             elsif board.cell[0].value == "O"
                 players[1].player_victory += 1
                 @result = true
-                @winner = "#{players[1].name} a gagné"
+                @winner = "\n\n                #{players[1].name.upcase} A GAGNÉ !!!!!!"
             end
         end  
 
@@ -123,11 +139,11 @@ class Game
             if board.cell[1].value == "X"
                 players[0].player_victory += 1 
                 @result = true
-                @winner = "#{players[0].name} a gagné"
+                @winner = "\n\n                #{players[0].name.upcase} A GAGNÉ !!!!!!"
             elsif board.cell[1].value == "O"
                 players[1].player_victory += 1
                 @result = true
-                @winner = "#{players[1].name} a gagné"
+                @winner = "\n\n                #{players[1].name.upcase} A GAGNÉ !!!!!!"
             end
         end  
 
@@ -135,11 +151,11 @@ class Game
             if board.cell[2].value == "X"
                 players[0].player_victory += 1 
                 @result = true
-                @winner = "#{players[0].name} a gagné"
+                @winner = "\n\n                #{players[0].name.upcase} A GAGNÉ !!!!!!"
             elsif board.cell[2].value == "O"
                 players[1].player_victory += 1
                 @result = true
-                @winner = "#{players[1].name} a gagné"
+                @winner = "\n\n                #{players[1].name.upcase} A GAGNÉ !!!!!!"
             end
         end  
 
@@ -147,11 +163,11 @@ class Game
             if board.cell[0].value == "X"
                 players[0].player_victory += 1 
                 @result = true
-                @winner = "#{players[0].name} a gagné"
+                @winner = "\n\n                #{players[0].name.upcase} A GAGNÉ !!!!!!"
             elsif board.cell[0].value == "O"
                 players[1].player_victory += 1
                 @result = true
-                @winner = "#{players[1].name} a gagné"
+                @winner = "\n\n                #{players[1].name.upcase} A GAGNÉ !!!!!!"
             end
         end  
 
@@ -159,11 +175,11 @@ class Game
             if board.cell[2].value == "X"
                 players[0].player_victory += 1 
                 @result = true
-                @winner = "#{players[0].name} a gagné"
+                @winner = "\n\n                #{players[0].name.upcase} A GAGNÉ !!!!!!"
             elsif board.cell[2].value == "O"
                 players[1].player_victory += 1
                 @result = true
-                @winner = "#{players[1].name} a gagné"
+                @winner = "\n\n                #{players[1].name.upcase} A GAGNÉ !!!!!!"
             end
         end  
     end 
