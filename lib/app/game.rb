@@ -2,7 +2,7 @@ require "pry"
 
 class Game
 
-    attr_accessor :p1name, :p2name, :board, :players, :result,
+    attr_accessor :p1name, :p2name, :board, :players, :result, :game_turn, :data_check
 
     def initialize(input_player1_name,input_player2_name)
 
@@ -10,8 +10,8 @@ class Game
         @p2name = input_player2_name
         @board = Board.new
         @result = false
-
-
+        @game_turn = 0
+        @data_check = false
 
         @players = [
         Player.new(p1name, "X"),
@@ -20,35 +20,35 @@ class Game
 
     def game_on
 
-        4.times do |i|
+        5.times do |i|
+            @game_turn += 1
             round(players[0])
             check_result
-            #puts result
-            puts @winner 
+            
             break if result == true
+            break if @game_turn == 9
+            
+            @game_turn += 1
             round(players[1])
             check_result
-            puts @winner 
-            #puts result
+
             break if result == true
         end   
-         
-        round(players[0])
-        check_result
+        
         if result == true
             puts @winner
+            #puts show_player_status
         else 
             puts "Match Nul"
+            #puts show_player_status
         end
     end
 
-    # def game_on_end
-        
-    # end
-
     def round(player)
+        puts ""
+        puts "#{player.name.upcase}, c'est ton tour, dans quelle case veux tu jouer ? "
 
-        puts "#{player.name} tu veux jouer quoi ? "
+        
         input_player_round = gets.chomp
         
         number = 0
@@ -61,6 +61,8 @@ class Game
         board.show_board
     end
 
+# Méthode pour vérifier si il y a un 3 lignes ayant la même valeurs. Si oui @result return True
+
     def check_result
 
         @result = ""
@@ -68,12 +70,11 @@ class Game
 
         if board.cell[0].value == board.cell[1].value && board.cell[0].value == board.cell[2].value
             if board.cell[0].value == "X"
-                #player[0]player_victory += 1 
+                players[0].player_victory += 1 
                 @result = true
                 @winner = "#{players[0].name} a gagné"
             elsif board.cell[0].value == "O"
-                #player[1]player_victory += 1
-                winner = "#{players[1].name} a gagné"
+                players[1].player_victory += 1
                 @result = true
                 @winner = "#{players[1].name} a gagné"
             end
@@ -81,102 +82,104 @@ class Game
 
         if board.cell[3].value == board.cell[4].value && board.cell[3].value == board.cell[5].value
             if board.cell[3].value == "X"
-                #player[0]player_victory += 1
-                winner = "#{players[0].name} a gagné"
+                players[0].player_victory += 1 
                 @result = true
-                puts "#{players[0].name} a gagné"
+                @winner = "#{players[0].name} a gagné"
             elsif board.cell[3].value == "O"
-                #player[1]player_victory += 1
-                winner = "#{players[1].name} a gagné"
+                players[1].player_victory += 1
                 @result = true
-                puts "#{players[1].name} a gagné"
+                @winner = "#{players[1].name} a gagné"
             end
         end  
 
         if board.cell[6].value == board.cell[7].value && board.cell[6].value == board.cell[8].value
             if board.cell[6].value == "X"
-                #player[0]player_victory += 1
-                winner = "#{players[0].name} a gagné"
+                players[0].player_victory += 1 
                 @result = true
-                puts "#{players[0].name} a gagné"
+                @winner = "#{players[0].name} a gagné"
             elsif board.cell[6].value == "O"
-                # player[1]player_victory += 1
-                winner = "#{players[1].name} a gagné"
+                players[1].player_victory += 1
                 @result = true
-                puts "#{players[1].name} a gagné"
+                @winner = "#{players[1].name} a gagné"
             end
         end  
 
         if board.cell[0].value == board.cell[3].value && board.cell[0].value == board.cell[6].value
             if board.cell[0].value == "X"
-                #player[0]player_victory += 1
-                winner = "#{players[0].name} a gagné"
+                players[0].player_victory += 1 
                 @result = true
-                puts "#{players[0].name} a gagné"
+                @winner = "#{players[0].name} a gagné"
             elsif board.cell[0].value == "O"
-                # player[1]player_victory += 1
-                winner = "#{players[1].name} a gagné"
+                players[1].player_victory += 1
                 @result = true
-                puts "#{players[1].name} a gagné"
+                @winner = "#{players[1].name} a gagné"
             end
         end  
 
         if board.cell[1].value == board.cell[4].value && board.cell[1].value == board.cell[7].value
             if board.cell[1].value == "X"
-                #player[0]player_victory += 1
-                winner = "#{players[0].name} a gagné"
+                players[0].player_victory += 1 
                 @result = true
-                puts "#{players[0].name} a gagné"
+                @winner = "#{players[0].name} a gagné"
             elsif board.cell[1].value == "O"
-                # player[1]player_victory += 1
-                winner = "#{players[1].name} a gagné"
+                players[1].player_victory += 1
                 @result = true
-                puts "#{players[1].name} a gagné"
+                @winner = "#{players[1].name} a gagné"
             end
         end  
 
         if board.cell[2].value == board.cell[5].value && board.cell[2].value == board.cell[8].value
             if board.cell[2].value == "X"
-                #player[0]player_victory += 1
-                winner = "#{players[0].name} a gagné"
+                players[0].player_victory += 1 
                 @result = true
-                puts "#{players[0].name} a gagné"
+                @winner = "#{players[0].name} a gagné"
             elsif board.cell[2].value == "O"
-                #player[1]player_victory += 1
-                winner = "#{players[1].name} a gagné"
+                players[1].player_victory += 1
                 @result = true
-                puts "#{players[1].name} a gagné"
+                @winner = "#{players[1].name} a gagné"
             end
         end  
 
         if board.cell[0].value == board.cell[4].value && board.cell[0].value == board.cell[8].value
             if board.cell[0].value == "X"
-                #player[0]player_victory += 1
-                winner = "#{players[0].name} a gagné"
+                players[0].player_victory += 1 
                 @result = true
-                puts "#{players[0].name} a gagné"
+                @winner = "#{players[0].name} a gagné"
             elsif board.cell[0].value == "O"
-                #player[1]player_victory += 1
-                winner = "#{players[1].name} a gagné"
+                players[1].player_victory += 1
                 @result = true
-                puts "#{players[1].name} a gagné"
+                @winner = "#{players[1].name} a gagné"
             end
         end  
 
         if board.cell[2].value == board.cell[4].value && board.cell[2].value == board.cell[6].value
             if board.cell[2].value == "X"
-                # player[0]player_victory += 1
-                winner = "#{players[0].name} a gagné"
+                players[0].player_victory += 1 
                 @result = true
-                puts "#{players[0].name} a gagné"
+                @winner = "#{players[0].name} a gagné"
             elsif board.cell[2].value == "O"
-                #player[1]player_victory += 1
-                winner = "#{players[1].name} a gagné"
+                players[1].player_victory += 1
                 @result = true
-                puts "#{players[1].name} a gagné"
+                @winner = "#{players[1].name} a gagné"
             end
         end  
     end 
+
+# Méthode pour vérifier si les valeurs enter par le joueur correspondent à une case existante. Si valeur non existante return false.
+    def check_player_input(input)
+        input_to_check = input.downcase
+        data = ["a1", "a2", "a3", "b1", "b2", "b3", "c1", "c2", "c3" ]
+
+        data.each do |i|
+            if input_to_check != i
+                return false
+            end
+        end
+        return true
+    end
+
+
+
 end  
 
 

@@ -3,12 +3,11 @@ require "pry"
 
 class BoardCase
 
-    attr_accessor :name, :value, :myhash
+    attr_accessor :name, :value
     
     def initialize(name, value)
-        #@myhash = {}
         @name = name
         @value = value
-        #@myhash.store(name, value)
+
     end
 end

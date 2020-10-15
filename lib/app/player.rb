@@ -12,9 +12,8 @@ class Player
     end
 
     def show_player_status
-        puts "
-        #{Player[0].name} a #{Player[0].player_victory} victoire(s)
-        et #{Player[1].name} a #{Player[1].player_victory} victoire(s)"
+        puts "#{player[0].name} a #{Player[0].player_victory} victoire(s)
+        et #{player[1].name} a #{Player[1].player_victory} victoire(s)"
     end
 
 

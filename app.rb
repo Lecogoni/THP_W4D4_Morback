@@ -8,14 +8,17 @@ require 'app/board'
 require 'app/boardcase'
 require 'app/game'
 
+puts ""
+puts " --- WELCOME IN MORBACK : THE GAME --- "
+puts ""
 
-puts " Press enter pour jouer ? "
+puts " Si tu veux jouer presse un n'importe quel touche !! "
 #input_game = gets.chomp
 
-puts "enter player 1 name : "
+puts "Joueur 1 entrer votre nom : "
 #input_player1_name = gets.chomp
 
-puts "enter player 2 name : "
+puts "Joueur 2 entrer votre nom : "
 #input_player2_name = gets.chomp
 
 game1 = Game.new("nico", "ed")
