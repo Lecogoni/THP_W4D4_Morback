@@ -1,30 +1,20 @@
+require "pry"
 
 class Board
 
-    attr_accessor :a1, :a2, :a3, :b1, :b2, :b3, :c1, :c2, :c3 
+    attr_accessor :cell
 
     def initialize
 
-        @a1 = "  a1  "
-        a1 = BoardCase.new(a1)
-        @a2 = "  a2  "
-        a2 = BoardCase.new(a2)
-        @a3 = "  a3  "
-        a3 = BoardCase.new(a3)
-
-        @b1 = "  b1  "
-        b1 = BoardCase.new(b1)
-        @b2 = "  b2  "
-        b2 = BoardCase.new(b2)
-        @b3 = "  b3  "
-        b3 = BoardCase.new(b3)
-
-        @c1 = "  c1  "
-        c1 = BoardCase.new(c1)
-        @c2 = "  c2  "
-        c2 = BoardCase.new(c2)
-        @c3 = "  c3  "
-        c3 = BoardCase.new(c3)
+        @cell = [BoardCase.new("A1", " "), 
+                BoardCase.new("A2", " "), 
+                BoardCase.new("A3", " "), 
+                BoardCase.new("A4", " "), 
+                BoardCase.new("A5", " "), 
+                BoardCase.new("A6", " "),
+                BoardCase.new("A7", " "),
+                BoardCase.new("A8", " "),
+                BoardCase.new("A9", " ")]
 
 
         puts "      1      2      3"
@@ -64,7 +54,7 @@ class Board
         sleep(0.1)
         puts "  |      |      |      |"
         sleep(0.1)
-        puts "A |#{a1}|#{a2}|#{a3}|"
+        puts "A |   #{cell[0].value}  |  #{cell[1].value}   |  #{cell[2].value} |"
         sleep(0.1)
         puts "  |      |      |      |"
         sleep(0.1)
@@ -72,7 +62,7 @@ class Board
         sleep(0.1)
         puts "  |      |      |      |"
         sleep(0.1)
-        puts "B |#{b1}|#{b2}|#{b3}|"
+        puts "B |   #{cell[3].value}  |  #{cell[4].value}   |  #{cell[5].value}  |"
         sleep(0.1)
         puts "  |      |      |      |"
         sleep(0.1)
@@ -80,10 +70,12 @@ class Board
         sleep(0.1)
         puts "  |      |      |      |"
         sleep(0.1)
-        puts "C |#{c1}|#{c2}|#{c3}|"
+        puts "C |   #{cell[6].value}  |  #{cell[7].value}   |  #{cell[8].value}  |"
         sleep(0.1)
         puts "  |      |      |      |"
         sleep(0.1)
         puts "  ----------------------"
     end 
 end
+
+#if @cell[0][1] == @cell[1][1] == @cell[2][1]

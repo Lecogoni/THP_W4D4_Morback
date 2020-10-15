@@ -1,6 +1,7 @@
+require "pry"
 
 class Player
-    attr_accessor :name, :player_victory
+    attr_accessor :name, :sign, :player_victory
     
     def initialize(name, sign)
 
