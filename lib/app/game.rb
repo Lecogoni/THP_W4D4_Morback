@@ -46,6 +46,9 @@ class Game
             puts "               MATCH NUL"
             #puts show_player_status
         end
+        puts ""
+        sleep(1)
+        relaunch
     end
 
 # Méthode qui appel un input du joueur, et appel la fonction qui va vérifier si cette case est libre 
@@ -197,7 +200,29 @@ class Game
         @data_check =  true
     end
 
-
+    def relaunch
+        relaod = ""
+        #while reload != "y" || reload != "n"
+            puts ""
+            puts "Voulez vous refaire une partie ? y n"
+            puts ""   
+            print ">>> "
+            reload = gets.downcase.chomp
+            if reload == "y"
+                game_on
+            else
+                sleep(1)
+                puts "et donc quoi maintenant, on attend"
+                puts ".."
+                sleep(1)
+                puts "....."
+                sleep(1.2)
+                puts "........"
+                sleep(1.5)
+                puts "................"
+            end
+        #end
+    end
 
 end  
 
